@@ -1,4 +1,6 @@
-from typing import List
+from typing import List, Optional
+
+from Medium.medium import ListNode
 
 
 class Solution:
@@ -18,11 +20,32 @@ class Solution:
             numbers.append(dx)
             x //= 10
         n = len(numbers)
-        input(numbers)
         for i in range(n // 2):
             if numbers[i] != numbers[n - 1 - i]:
                 return False
         return True
+
+    def isPalindrome2(self, x: int) -> bool:
+        if x < 0:
+            return False
+        dx = x
+        length = 0
+        numbers = []
+        palindrome_number = 0
+        while dx > 0:
+            l = dx % 10
+            length += 1
+            dx //= 10
+            numbers.append(l)
+        print(length)
+        print(numbers)
+        for number in numbers:
+            palindrome_number += number * 10 ** (length - 1)
+            length -= 1
+        print(palindrome_number)
+        if palindrome_number == x:
+            return True
+        return False
 
     def romanToInt(self, s: str) -> int:
 
@@ -52,5 +75,7 @@ class Solution:
                         result -= 2 * same_letters * romans[last_letter]
             last_letter = letter
         return result
+
+
 
 
